@@ -1,6 +1,6 @@
-#Server
+#Brand Flakes Server
 
-The server is written using the [Meteor framework](https://www.meteor.com/). Follow the [installation instructions](https://www.meteor.com/install) to get set up. 
+The `brand-flakes` server is written using the [Meteor framework](https://www.meteor.com/). Follow the [installation instructions](https://www.meteor.com/install) to get set up. 
 
 Then, to run the server you can use the `start` script:
 
@@ -11,6 +11,8 @@ Then, to run the server you can use the `start` script:
 # Start the server in production mode
 ./start --env production
 ```
+
+The port is automatically set using environment variables in development mode to not conflict with the `example-app`.
 
 #Database
 
