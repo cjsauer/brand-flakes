@@ -47,7 +47,7 @@ The Meteor server exposes a few simple methods for storing and retrieving metric
 Increments the count on the given metric for the given user, creating that field if it does not exist:
 
 ```JavaScript
-Meteor.call("incrementMetric", "some-user-id", "name-of-metric");
+Meteor.call("incrementMetric", "app-id", "some-user-id", "name-of-metric");
 ```
 
 ###Reset Metric
@@ -55,13 +55,13 @@ Meteor.call("incrementMetric", "some-user-id", "name-of-metric");
 Resets the given metric to zero for the given user:
 
 ```JavaScript
-Meteor.call("resetMetric", "some-user-id", "name-of-metric");
+Meteor.call("resetMetric", "app-id", "some-user-id", "name-of-metric");
 ```
 
 #Publications
 
-The Meteor server has just one publication: the metrics for the given user id, as shown in the example above.
+The Meteor server has just one publication: the metrics for the given user id, as shown in the sample JSON above.
 
 ```JavaScript
-Meteor.subscribe("metrics", "some-user-id");
+Meteor.subscribe("metrics", "app-id", "some-user-id");
 ```
