@@ -1,6 +1,6 @@
 #Server
 
-The server is written using the (Meteor framework)[https://www.meteor.com/]. Follow the [installation instructions](https://www.meteor.com/install) to get set up. 
+The server is written using the [Meteor framework](https://www.meteor.com/). Follow the [installation instructions](https://www.meteor.com/install) to get set up. 
 
 Then, to run the server you can use the `start` script:
 
