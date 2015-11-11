@@ -16,15 +16,27 @@ The port is automatically set using environment variables in development mode to
 
 #Database
 
-The accompanying MongoDB database stores all user personalization metrics. Here is an example of 1 user's metrics:
+The accompanying MongoDB database stores all user personalization metrics. Here is an example of a metrics document:
 
 ```JSON
-"some-user-id": {
-  "shopping-cart-clicked": 12,
-  "the-north-face": 34,
-  "some-other-metric": 42
+"some-app-id": {
+  "some-user-id": {
+    "shopping-cart-clicked": 12,
+    "the-north-face": 34,
+    "some-other-metric": 42
+  },
+  "another-user-id": {
+    "shopping-cart-clicked": 36,
+    "the-north-face": 4,
+    "another-random-metric": 112
+  }
+},
+"another-app-id": {
+  ...
 }
 ```
+
+Notice how the documents are completely flexible; not every user needs to contain the same metrics as every other user. In other words, metrics only exist for actions that have actually been taken by that user.
 
 #Methods
 
@@ -32,7 +44,7 @@ The Meteor server exposes a few simple methods for storing and retrieving metric
 
 ###Record Action
 
-Increments the count on the given metric for the given user:
+Increments the count on the given metric for the given user, creating that field if it does not exist:
 
 ```JavaScript
 Meteor.call("incrementMetric", "some-user-id", "name-of-metric");
