@@ -10,6 +10,15 @@ describe('Apps collection', function() {
     });
   });
 
+  it('the appId field should be immuatable', function() {
+    return server.execute(function() {
+      var app = new App({name: 'Example App'});
+      app.save();
+      app.set('appId', 'some-other-id');
+      expect(app.save()).to.equal(0);
+    });
+  });
+
   describe('events', function() {
     it('should generate a random app id before insertion', function(){
       return server.execute(function() {
