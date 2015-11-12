@@ -1,15 +1,15 @@
-Metrics = new Mongo.Collection('metrics');
+Apps = new Mongo.Collection('apps');
 
-Metric = Astro.Class({
-  name: 'Metric',
-  collection: Metrics,
+App = Astro.Class({
+  name: 'App',
+  collection: Apps,
   fields: {
     name: 'null',
     appId: {
       type: 'string',
       immutable: true
     },
-    users: {
+    metrics: {
       type: 'object',
       default: function() {
         return {};
@@ -28,13 +28,13 @@ Metric = Astro.Class({
   }
 });
 
-Metrics.allow({
+Apps.allow({
   insert() { return false; },
   update() { return false; },
   remove() { return false; }
 });
 
-Metrics.deny({
+Apps.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; }
