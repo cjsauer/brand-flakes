@@ -21,3 +21,7 @@ audit-argument-checks
 check
 browser-policy
 anti:gagarin
+jagi:astronomy
+jagi:astronomy-timestamp-behavior
+jagi:astronomy-simple-validators
+random
