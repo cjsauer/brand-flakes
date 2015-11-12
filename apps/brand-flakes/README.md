@@ -65,3 +65,9 @@ The Meteor server has just one publication: the metrics for the given user id, a
 ```JavaScript
 Meteor.subscribe("metrics", "app-id", "some-user-id");
 ```
+
+#Tests
+
+The test runner in use is [Gagarin](https://github.com/anticoders/gagarin). Follow the instructions in there to get it installed (it's just a node package). You'll also need to install a web driver, there are [instructions](https://github.com/anticoders/gagarin#testing-with-browser) for doing that within Gagarin's readme, and further [instructions](https://devblog.supportbee.com/2014/10/27/setting-up-cucumber-to-run-with-Chrome-on-Linux/) here for installing chromedriver on Ubuntu.
+
+You can then run the tests with `gagarin --verbose` from the app directory.
