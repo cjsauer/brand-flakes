@@ -20,6 +20,14 @@ describe('Apps collection', function() {
   });
 
   describe('events', function() {
+    it('should define an empty object for the metrics field by default', function(){
+      return server.execute(function() {
+        var app = new App({name: 'Example App'});
+        app.save();
+        expect(app.get('metrics')).to.eql({});
+      });
+    });
+
     it('should generate a random app id before insertion', function(){
       return server.execute(function() {
         var app = new App({name: 'Example App'});
