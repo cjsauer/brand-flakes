@@ -2,11 +2,15 @@ describe('Apps collection', function() {
   var server = meteor();
   var client = browser(server);
 
-  it('should not be defined on the client', function(){
+  it('should not be writable from the client', function(){
     return client.promise(function(resolve, reject) {
-      var apps = Apps;
+      Apps.insert({name: 'not allowed!'}, function(err, res) {
+        if(err) {
+          reject(err);
+        }
+      });
     }).expectError(function (err) {
-      expect(err.message).to.contain('not defined');
+      expect(err.message).to.contain('Access denied');
     });
   });
 
