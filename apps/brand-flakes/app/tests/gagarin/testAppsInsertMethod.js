@@ -1,4 +1,4 @@
-describe('Apps insert method', function() {
+describe('apps/insert method', function() {
   var server = meteor();
   var client = browser(server);
 
