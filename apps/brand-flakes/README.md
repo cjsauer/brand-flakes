@@ -42,12 +42,36 @@ Notice how the documents are completely flexible; not every user needs to contai
 
 The Meteor server exposes a few simple methods for storing and retrieving metrics. 
 
+###Authenticate
+
+Authentication is done by passing in the app ID given to an app at creation.
+
+```JavaScript
+Meteor.call("authenticate", "app-id", function(err, res) {
+  // err is undefined iff authentication succeeded. Contains an error object otherwise.
+});
+```
+
+*Right now this method does nothing. Authentication requires more research.*
+
+###App creation
+
+An app can be created by using the Astronomy package:
+
+```JavaScript
+var app = new App({name: 'Example App'});
+Meteor.call('apps/insert', app, function(err, res) {
+  // res contains the newly inserted apps Mongo ID (not app id)
+  // err is undefined iff insertion succeeded. Contains an error object otherwise.
+});
+```
+
 ###Record Action
 
 Increments the count on the given metric for the given user, creating that field if it does not exist:
 
 ```JavaScript
-Meteor.call("incrementMetric", "app-id", "some-user-id", "name-of-metric");
+Meteor.call("apps/incrementMetric", "app-id", "some-user-id", "name-of-metric");
 ```
 
 ###Reset Metric
@@ -55,7 +79,7 @@ Meteor.call("incrementMetric", "app-id", "some-user-id", "name-of-metric");
 Resets the given metric to zero for the given user:
 
 ```JavaScript
-Meteor.call("resetMetric", "app-id", "some-user-id", "name-of-metric");
+Meteor.call("apps/resetMetric", "app-id", "some-user-id", "name-of-metric");
 ```
 
 #Publications
