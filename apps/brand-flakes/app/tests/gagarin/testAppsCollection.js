@@ -1,20 +1,18 @@
 describe('Apps collection', function() {
+
   var server = meteor();
   var client = browser(server);
 
+  var dummyId;
+
   before(function() {
     return server.execute(function() {
-      // Clear all apps
-      Apps.remove({});
-    }).then(function() {
-      return client.promise(function(resolve) {
-        // Create a dummy app
-        Meteor.call('apps/insert', new App({name: 'Dummy}'}), function(err, res) {
-          // Save its ID
-          Meteor.dummyId = res;
-          resolve(res);
-        });
+      var dummyApp = new App({
+        name: 'Dummy'
       });
+      return dummyApp.save();
+    }).then(function(id) {
+      dummyId = id;
     });
   });
 
@@ -24,6 +22,7 @@ describe('Apps collection', function() {
         if(err) {
           reject(err);
         }
+        expect.fail();
       });
     }).expectError(function (err) {
       expect(err.message).to.contain('Access denied');
@@ -31,25 +30,27 @@ describe('Apps collection', function() {
   });
 
   it('should not be removable from the client', function(){
-    return client.promise(function(resolve, reject) {
-      Apps.remove({_id: Meteor.dummyId}, function(err, res) {
+    return client.promise(function(resolve, reject, dummyId) {
+      Apps.remove({_id: dummyId}, function(err, res) {
         if(err) {
           reject(err);
         }
+        expect.fail();
       });
-    }).expectError(function (err) {
+    }, [dummyId]).expectError(function (err) {
       expect(err.message).to.contain('Access denied');
     });
   });
 
   it('should not be editable from the client', function(){
-    return client.promise(function(resolve, reject) {
-      Apps.update({_id: Meteor.dummyId}, {$set: {name: 'HAHAHA'}}, function(err, res) {
+    return client.promise(function(resolve, reject, dummyId) {
+      Apps.update({_id: dummyId}, {$set: {name: 'HAHAHA'}}, function(err, res) {
         if(err) {
           reject(err);
         }
+        expect.fail();
       });
-    }).expectError(function (err) {
+    }, [dummyId]).expectError(function (err) {
       expect(err.message).to.contain('Access denied');
     });
   });
@@ -69,33 +70,26 @@ describe('Apps collection', function() {
         var app = new App({name: 'Example App'});
         app.save();
         expect(app.get('metrics')).to.eql({});
+        app.remove();
       });
     });
 
     it('should generate a random app id before insertion', function(){
-      return server.execute(function() {
-        var app = new App({name: 'Example App'});
-        app.save();
+      return server.execute(function(dummyId) {
+        var app = Apps.findOne(dummyId);
         expect(app.get('appId')).not.to.be.undefined;
         expect(app.get('appId').length).to.equal(30);
-      });
+      }, [dummyId]);
     });
   });
 
   describe('validation', function() {
 
     it('should return true for valid input', function(){
-      return server.execute(function() {
-        var app = new App({
-          name: 'Example App',
-          metrics: {
-            'some-user-id': {
-              'some-app': 10
-            }
-          }
-        });
+      return server.execute(function(dummyId) {
+        var app = Apps.findOne(dummyId);
         expect(app.validate()).to.be.true;
-      });
+      }, [dummyId]);
     });
 
     it('should return false if no name is provided', function(){
