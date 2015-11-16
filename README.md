@@ -12,10 +12,10 @@ To use Brand Flakes, we just need to insert this snippet into our application ju
 s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
 (window,document,'BrandFlakes','script','//localhost:3000/public/brand-flakes.js');
 
-BrandFlakes('create', 'UA-XXXXX-X', 'auto');
+BrandFlakes('create', 'some-app-id', 'some-user-id', 'auto');
 ```
 
-Replace `UA-XXXXX-X` with the application ID given to you when you set up your account. 
+Replace `some-app-id` with the application ID given to you when you set up your account, and replace `some-user-id` with a unique identifier for the user currently viewing your website. This will be unique to how you've implemented authentication on your site, but is usually the ID of the user as it stands in your database (primary key, \_id file in Mongo, etc.)
 
 Brand Flakes is now configured and ready to use on your site! See below for some examples on how to use it in response to user actions.
 
@@ -24,26 +24,24 @@ Brand Flakes is now configured and ready to use on your site! See below for some
 ```javascript
 <script>
 // The user clicked the shopping cart
-BrandFlakes('record', 'some-user-id', 'shopping-cart-clicked');
+BrandFlakes('record', 'shopping-cart-clicked');
 
 // The user visited a page containing "North Face" in the URL
-BrandFlakes('record', 'some-user-id', 'north-face');
+BrandFlakes('record', 'north-face');
 
 // Metrics can be recorded for ANYTHING at any time
-BrandFlakes('record', 'some-user-id', 'literally-any-metric-we-want-to-track');
+BrandFlakes('record', 'literally-any-metric-we-want-to-track');
 </script>
 ```
 
 What `'record'` does is just increment the number of times that this action has been recorded. For example, if this is the first time the user has clicked the shopping cart, Brand Flakes will store the value `1` for this key. Every time `'record'` is called from here on, that value is incremented. See below for how to retreive those counts. 
-
-Here, `'some-user-id'` is a special identifier that is up to you. Most likely, when your user logs in, they are stored in your database with unique id to identify them. If that is the case, you should use that. This is how Brand Flakes identifies users and personalizes the experience to match their interests. 
 
 ### Retrieving action counts
 
 ```javascript
 <script>
 // Retrieve the number of times the user has visited North Face pages
-var northFaceInterest = BrandFlakes('get', 'some-user-id', 'north-face');
+var northFaceInterest = BrandFlakes('get', 'north-face');
 
 /*
  * Do something clever with that metric, like set the font size of their favorite products
