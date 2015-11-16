@@ -8,7 +8,7 @@ Meteor.methods({
    * @return {Number} The new value of the metric
    * @throws {Meteor.Error} The app with the given appId does not exist
    */
-  'apps/incrementMetric': function(appId, userId, metric) {
+  'apps/record': function(appId, userId, metric) {
     check(appId, String);
     check(userId, String);
     check(metric, String);

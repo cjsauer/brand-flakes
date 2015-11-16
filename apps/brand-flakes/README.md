@@ -71,7 +71,7 @@ Meteor.call('apps/insert', app, function(err, res) {
 Increments the count on the given metric for the given user, creating that field if it does not exist:
 
 ```JavaScript
-Meteor.call("apps/incrementMetric", "app-id", "some-user-id", "name-of-metric");
+Meteor.call("apps/record", "app-id", "some-user-id", "name-of-metric");
 ```
 
 ###Reset Metric
