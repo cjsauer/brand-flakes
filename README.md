@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/cjsauer/brand-flakes.svg?style=svg)](https://circleci.com/gh/cjsauer/brand-flakes)
+
 # Desired Interface
 
 Personalizing a web page is all about recording actions a user takes by keeping a count of how many times the action occurs, and then retrieving those counts to do something with.
