@@ -31,5 +31,5 @@ test:
   
   override:
     # Test the brand-flakes server
-    - gagarin --verbose --timeout 20000:
+    - gagarin --timeout 20000:
         pwd: apps/brand-flakes/app
