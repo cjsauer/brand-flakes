@@ -69,4 +69,6 @@ You can run both the brand-flakes server and example-app server by changing to t
 
 You can run the tests for both apps by changing to their respective `app/` directories and running `gagarin`.
 
-To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `apps/brand-flakes/app/public/brand-flakes.min.js`. From their it will be served for public consumption.
+To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `apps/brand-flakes/app/public/brand-flakes.min.js`. From their it will be served for public consumption. 
+
+As a convenience, you can also run `gulp build --watch` and gulp will watch for any changes to the files in the `src/` directory, triggering a rebuild automatically.

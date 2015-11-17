@@ -8,3 +8,5 @@ gulp.task('build', function() {
     .pipe(uglify())
     .pipe(gulp.dest('./apps/brand-flakes/app/public'));
 });
+
+gulp.watch('src/*.js', ['build']);
