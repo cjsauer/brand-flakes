@@ -7,12 +7,16 @@
   <meta name="author" content="Calvin Sauer">
 
   <script>
+    function getURLParameter(name) {
+      return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
+
     !function(b,f,l,a,k,e,s){b.BrandFlakesObject=l;b[l]||(b[l]=function(){
     (b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=f.createElement(a);
     s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
     (window,document,'BrandFlakes','script','//localhost:3000/brand-flakes.min.js');
 
-    BrandFlakes('wvugtGeEAxHJcFjjQc7wDgdaTokHT5', 'some-user-id', 'debug');
+    BrandFlakes(getURLParameter('appId'), getURLParameter('userId'), 'debug');
   </script>
 </head>
 
