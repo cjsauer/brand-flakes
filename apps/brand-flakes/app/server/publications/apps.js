@@ -24,7 +24,6 @@ Meteor.publish('user-metrics', function(appId, userId) {
   if(app) {
 
     if(!app.metrics[userId]) {
-      console.log("HERERERERERR");
       // Initialize this user's metrics if their are none yet
       app.set('metrics.' + userId, {});
       app.save();
