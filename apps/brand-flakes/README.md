@@ -42,12 +42,36 @@ Notice how the documents are completely flexible; not every user needs to contai
 
 The Meteor server exposes a few simple methods for storing and retrieving metrics. 
 
+###Authenticate
+
+Authentication is done by passing in the app ID given to an app at creation.
+
+```JavaScript
+Meteor.call("authenticate", "app-id", function(err, res) {
+  // err is undefined iff authentication succeeded. Contains an error object otherwise.
+});
+```
+
+*Right now this method does nothing. Authentication requires more research.*
+
+###App creation
+
+An app can be created by using the Astronomy package:
+
+```JavaScript
+var app = new App({name: 'Example App'});
+Meteor.call('apps/insert', app, function(err, res) {
+  // res contains the newly inserted apps Mongo ID (not app id)
+  // err is undefined iff insertion succeeded. Contains an error object otherwise.
+});
+```
+
 ###Record Action
 
 Increments the count on the given metric for the given user, creating that field if it does not exist:
 
 ```JavaScript
-Meteor.call("incrementMetric", "app-id", "some-user-id", "name-of-metric");
+Meteor.call("apps/record", "app-id", "some-user-id", "name-of-metric");
 ```
 
 ###Reset Metric
@@ -55,7 +79,7 @@ Meteor.call("incrementMetric", "app-id", "some-user-id", "name-of-metric");
 Resets the given metric to zero for the given user:
 
 ```JavaScript
-Meteor.call("resetMetric", "app-id", "some-user-id", "name-of-metric");
+Meteor.call("apps/resetMetric", "app-id", "some-user-id", "name-of-metric");
 ```
 
 #Publications
@@ -63,5 +87,11 @@ Meteor.call("resetMetric", "app-id", "some-user-id", "name-of-metric");
 The Meteor server has just one publication: the metrics for the given user id, as shown in the sample JSON above.
 
 ```JavaScript
-Meteor.subscribe("metrics", "app-id", "some-user-id");
+Meteor.subscribe("user-metrics", "app-id", "some-user-id");
 ```
+
+#Tests
+
+The test runner in use is [Gagarin](https://github.com/anticoders/gagarin). Follow the instructions in there to get it installed (it's just a node package). You'll also need to install a web driver, there are [instructions](https://github.com/anticoders/gagarin#testing-with-browser) for doing that within Gagarin's readme, and further [instructions](https://devblog.supportbee.com/2014/10/27/setting-up-cucumber-to-run-with-Chrome-on-Linux/) here for installing chromedriver on Ubuntu.
+
+You can then run the tests with `gagarin --verbose` from the app directory.

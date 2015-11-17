@@ -1,2 +1,6 @@
 # Vim files
 *.swp
+*.tern-project
+
+# Gagarin test runner
+.gagarin/

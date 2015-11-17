@@ -4,35 +4,44 @@ Personalizing a web page is all about recording actions a user takes by keeping 
 
 ### Authenticating
 
-Before using Brand Flakes, we need to authenticate this application:
+To use Brand Flakes, we just need to insert this snippet into our application just before the closing `head` tag:
 
 ```JavaScript
-BrandFlakes.authenticate('my-app-id', 'my-app-secret');
+!function(b,f,l,a,k,e,s){b.BrandFlakesObject=l;b[l]||(b[l]=function(){
+(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=f.createElement(a);
+s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
+(window,document,'BrandFlakes','script','//localhost:3000/public/brand-flakes.js');
+
+BrandFlakes('create', 'some-app-id', 'some-user-id', 'auto');
 ```
 
-*Please be aware that this is very insecure!! We are stubbing it in this way for future improvement.*
+Replace `some-app-id` with the application ID given to you when you set up your account, and replace `some-user-id` with a unique identifier for the user currently viewing your website. This will be unique to how you've implemented authentication on your site, but is usually the ID of the user as it stands in your database (primary key, \_id file in Mongo, etc.)
+
+Brand Flakes is now configured and ready to use on your site! See below for some examples on how to use it in response to user actions.
 
 ### Gathering metrics
 
 ```javascript
 <script>
 // The user clicked the shopping cart
-BrandFlakes.incrementMetric('some-user-id', 'shopping-cart-clicked');
+BrandFlakes('record', 'shopping-cart-clicked');
 
 // The user visited a page containing "North Face" in the URL
-BrandFlakes.incrementMetric('some-user-id', 'north-face');
+BrandFlakes('record', 'north-face');
 
 // Metrics can be recorded for ANYTHING at any time
-BrandFlakes.incrementMetric('some-user-id', 'literally-any-metric-we-want-to-track');
+BrandFlakes('record', 'literally-any-metric-we-want-to-track');
 </script>
 ```
+
+What `'record'` does is just increment the number of times that this action has been recorded. For example, if this is the first time the user has clicked the shopping cart, Brand Flakes will store the value `1` for this key. Every time `'record'` is called from here on, that value is incremented. See below for how to retreive those counts. 
 
 ### Retrieving action counts
 
 ```javascript
 <script>
 // Retrieve the number of times the user has visited North Face pages
-var northFaceInterest = BrandFlakes.getMetric('some-user-id', 'north-face');
+var northFaceInterest = BrandFlakes('get', 'north-face');
 
 /*
  * Do something clever with that metric, like set the font size of their favorite products

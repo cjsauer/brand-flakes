@@ -1,0 +1,35 @@
+dependencies:
+
+  cache_directories:
+    - "~/.meteor"
+    - "~/.npm"
+    - "~/Downloads"
+
+  override:
+    # -- CHROME DRIVER --
+    - if [ ! -e ~/Downloads/chromedriver_linux64.zip ]; then wget -N http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip -P ~/Downloads; fi
+    - if [ ! -e ~/Downloads/chromedriver ]; then unzip ~/Downloads/chromedriver_linux64.zip -d ~/Downloads; fi
+    - chmod +x ~/Downloads/chromedriver
+
+
+    # -- CACHE METEOR --
+    # Restore the meteor symlink
+    - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
+    # Install Meteor if the cache didn't restore it
+    - if [ ! -e ~/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+
+    # -- INSTALL AND CACHE GAGARIN --
+    - npm install -g gagarin
+
+  post:
+    # Run the chromedriver server
+    - ~/Downloads/chromedriver:
+        background: true
+    - sleep 5
+
+test:
+  
+  override:
+    # Test the brand-flakes server
+    - gagarin --verbose:
+        pwd: apps/brand-flakes/app
