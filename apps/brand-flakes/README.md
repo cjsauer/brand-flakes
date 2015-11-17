@@ -87,7 +87,7 @@ Meteor.call("apps/resetMetric", "app-id", "some-user-id", "name-of-metric");
 The Meteor server has just one publication: the metrics for the given user id, as shown in the sample JSON above.
 
 ```JavaScript
-Meteor.subscribe("metrics", "app-id", "some-user-id");
+Meteor.subscribe("user-metrics", "app-id", "some-user-id");
 ```
 
 #Tests
