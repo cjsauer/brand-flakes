@@ -22,6 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "ddp.js": "~1.1.0"
+    "asteroid": "~0.6.1"
   }
 }
