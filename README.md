@@ -55,3 +55,18 @@ var northFaceInterest = BrandFlakes('get', 'north-face');
 # Syncing between devices
 
 User actions are sent *in real time* to a separate server using the DDP protocol (Meteor) using any kind of user id as the key. This way, actions taken on the desktop version of the website will be reflected when the same user visits the site on mobile, or any other device. Following actions taken on the mobile version of the site are then tracked in the same way, given that the user is logged in or identified in some way.
+
+# Contributors
+
+To get up and running, you'll need a few dependencies installed:
+
+```bash
+bower update
+npm install -g
+```
+
+You can run both the brand-flakes server and example-app server by changing to their respective top-level directories and running the `./start` script. They'll be started on separate ports automatically. 
+
+You can run the tests for both apps by changing to their respective `app/` directories and running `gagarin`.
+
+To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `apps/brand-flakes/app/public/brand-flakes.min.js`. From their it will be served for public consumption.

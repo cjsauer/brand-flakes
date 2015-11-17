@@ -1,0 +1,25 @@
+{
+  "name": "brand-flakes",
+  "version": "1.0.0",
+  "description": "NPM dependencies for Brand Flakes",
+  "main": "src/brand-flakes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjsauer/brand-flakes.git"
+  },
+  "author": "Calvin Sauer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjsauer/brand-flakes/issues"
+  },
+  "homepage": "https://github.com/cjsauer/brand-flakes#readme",
+  "devDependencies": {
+    "gagarin": "^0.4.11",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.1"
+  }
+}

@@ -4,3 +4,12 @@
 
 # Gagarin test runner
 .gagarin/
+
+# Bower generated files
+bower_components/
+
+# NPM generated files
+node_modules/
+
+# Gulp generated files
+apps/brand-flakes/app/public/brand-flakes.min.js
