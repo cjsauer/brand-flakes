@@ -14,7 +14,7 @@ To use Brand Flakes, we just need to insert this snippet into our application ju
 s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
 (window,document,'BrandFlakes','script','//localhost:3000/public/brand-flakes.min.js');
 
-BrandFlakes('some-app-id', 'some-user-id');
+BrandFlakes('some-app-id', 'some-user-id', 'debug'); // The debug flag is optional!
 ```
 
 Replace `some-app-id` with the application ID given to you when you set up your account, and replace `some-user-id` with a unique identifier for the user currently viewing your website. This will be unique to how you've implemented authentication on your site, but is usually the ID of the user as it stands in your database (primary key, \_id file in Mongo, etc.)
