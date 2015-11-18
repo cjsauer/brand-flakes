@@ -65,10 +65,8 @@ bower update
 npm install -g
 ```
 
-You can run both the brand-flakes server and example-app server by changing to their respective top-level directories and running the `./start` script. They'll be started on separate ports automatically. 
+You can run the server by changing to the `server/` directory and running the `./start` script. Be sure to have [meteor installed](https://www.meteor.com/install).
 
-You can run the tests for both apps by changing to their respective `app/` directories and running `gagarin`.
+You can run the tests by changing to the server's `app/` directory and running `gagarin`. This will run all tests, including server-side tests, client-side tests (example app, app creation), and the brand-flakes.js script itself. 
 
-To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `apps/brand-flakes/app/public/brand-flakes.min.js`. From their it will be served for public consumption. 
-
-As a convenience, you can also run `gulp build --watch` and gulp will watch for any changes to the files in the `src/` directory, triggering a rebuild automatically.
+To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `server/app/public/brand-flakes.min.js` and begins watching for any file changes in the `src/` directory. From their it will be served for public consumption. The delivery method is identical to how Google Analytics serves its tracking script. See [this post here](http://code.stephenmorley.org/javascript/understanding-the-google-analytics-tracking-code/) to understand how it works. 

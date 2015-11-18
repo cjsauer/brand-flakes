@@ -48,11 +48,9 @@ Authentication is done by passing in the app ID given to an app at creation.
 
 ```JavaScript
 Meteor.call("authenticate", "app-id", function(err, res) {
-  // err is undefined iff authentication succeeded. Contains an error object otherwise.
+  // res is true iff auth succeeded, err contains error otherwise
 });
 ```
-
-*Right now this method does nothing. Authentication requires more research.*
 
 ###App creation
 
@@ -74,6 +72,8 @@ Increments the count on the given metric for the given user, creating that field
 Meteor.call("apps/record", "app-id", "some-user-id", "name-of-metric");
 ```
 
+Note that if we pass in a user or metric that does not exist, it will be created automatically. 
+
 ###Reset Metric
 
 Resets the given metric to zero for the given user:
@@ -89,6 +89,8 @@ The Meteor server has just one publication: the metrics for the given user id, a
 ```JavaScript
 Meteor.subscribe("user-metrics", "app-id", "some-user-id");
 ```
+
+Note that if the user id we subscribe to does not exist, it will be created and given an empty metrics object. 
 
 #Tests
 
