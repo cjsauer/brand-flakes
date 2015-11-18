@@ -5,6 +5,7 @@
   var userId;
   var debugMode;
   var server;
+  var metrics;
 
   var log = function(msg) {
     console.log("[Brand Flakes] " + msg);
@@ -65,6 +66,7 @@
       server.call('apps/authenticate', appId).result
         .then(function(result) {
           debugMode && log("Authentication successful!");
+          subscribe();
         }).catch(function(err) {
           // Clean up
           server.ddp._socket.close();
@@ -75,18 +77,38 @@
     }
   }
 
+  var subscribe = function() {
+    debugMode && log("Subscribing to given user...");
+    server.subscribe('user-metrics', appId, userId).ready
+      .then(function(sub_id) {
+        debugMode && log("Subscription ready for action!");
+        var collection = server.getCollection('apps');
+        var metricsRQ = collection.reactiveQuery({});
+        metrics = metricsRQ.result;
+        metricsRQ.on('change', function() {
+          metrics = metricsRQ.result;
+        });
+      }).catch(function() {
+        debugMode && console.error("Subscription to user's metrics failed!");
+      });
+  }
 
   /* ==============================
    * Public functions
    * ==============================
    */
 
-  BrandFlakes.record = function() {
+  BrandFlakes.record = function(metric) {
+    server.call('apps/record', appId, userId, metric).result
+      .then(function(result) {
+      }).catch(function(err) {
+        console.error(err);
+      });
   };
 
-  BrandFlakes.get = function() {
+  BrandFlakes.get = function(metricName) {
+    return metrics[0].metrics[userId][metricName];
   };
-
 
   /*
    * Kick off initialization
