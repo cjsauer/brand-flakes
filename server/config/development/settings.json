@@ -1,0 +1,7 @@
+{
+  "public": {
+    "brandFlakes": {
+      "meteorServer": "localhost:3000"
+    }
+  }
+}
