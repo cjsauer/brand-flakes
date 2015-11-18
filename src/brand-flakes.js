@@ -20,9 +20,8 @@
       debugMode = !!qCommands[2];
 
       var host;
-      if(Meteor && Meteor.settings.public.brandFlakes) {
-        // For local development, we can set the server in the settings.json file
-        host = Meteor.settings.public.brandFlakes.meteorServer;
+      if(debugMode) {
+        host = window.location.host;
       } else {
         host = "NO HOST SET";
       }
