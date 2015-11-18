@@ -19,9 +19,9 @@ dependencies:
     - if [ ! -e ~/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
 
     # -- INSTALL AND CACHE NPM PACKAGES --
-    - npm install -g 
+    - npm install 
     - npm install -g gulp
-    - npm install gagarin
+    - npm install -g gagarin
 
     # -- INSTALL AND CACHE BOWER PACKAGES --
     - bower update
