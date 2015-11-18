@@ -20,6 +20,8 @@ dependencies:
 
     # -- INSTALL AND CACHE NPM PACKAGES --
     - npm install -g 
+    - npm install -g gulp
+    - npm install gagarin
 
     # -- INSTALL AND CACHE BOWER PACKAGES --
     - bower update
