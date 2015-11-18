@@ -32,4 +32,4 @@ test:
   override:
     # Test the brand-flakes server
     - gagarin --timeout 20000:
-        pwd: apps/brand-flakes/app
+        pwd: server/app
