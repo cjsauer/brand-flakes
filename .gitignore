@@ -10,6 +10,7 @@ bower_components/
 
 # NPM generated files
 node_modules/
+npm-debug.log
 
 # Gulp generated files
 server/app/public/brand-flakes.min.js

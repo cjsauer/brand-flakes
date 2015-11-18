@@ -18,8 +18,14 @@ dependencies:
     # Install Meteor if the cache didn't restore it
     - if [ ! -e ~/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
 
-    # -- INSTALL AND CACHE GAGARIN --
-    - npm install -g gagarin
+    # -- INSTALL AND CACHE NPM PACKAGES --
+    - npm install -g 
+
+    # -- INSTALL AND CACHE BOWER PACKAGES --
+    - bower update
+
+    # -- RUN GULP --
+    - gulp build-dev
 
   post:
     # Run the chromedriver server
