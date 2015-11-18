@@ -67,6 +67,13 @@ npm install -g
 
 You can run the server by changing to the `server/` directory and running the `./start` script. Be sure to have [meteor installed](https://www.meteor.com/install).
 
+### Tests
+
 You can run the tests by changing to the server's `app/` directory and running `gagarin`. This will run all tests, including server-side tests, client-side tests (example app, app creation), and the brand-flakes.js script itself. 
 
-To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `server/app/public/brand-flakes.min.js` and begins watching for any file changes in the `src/` directory. From their it will be served for public consumption. The delivery method is identical to how Google Analytics serves its tracking script. See [this post here](http://code.stephenmorley.org/javascript/understanding-the-google-analytics-tracking-code/) to understand how it works. 
+
+### Building
+
+To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified and stripped file into `server/app/public/brand-flakes.min.js`. You may also choose to run `gulp build-dev` which does not minify or strip the srouce, and begins watching for any file changes in the `src/` directory. 
+
+From their it will be served for public consumption. The delivery method is identical to how Google Analytics serves its tracking script. See [this post here](http://code.stephenmorley.org/javascript/understanding-the-google-analytics-tracking-code/) to understand how it works. 

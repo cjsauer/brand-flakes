@@ -20,6 +20,7 @@
     "gagarin": "^0.4.11",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-strip-code": "^0.1.2",
     "gulp-uglify": "^1.5.1"
   }
 }
