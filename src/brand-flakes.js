@@ -10,6 +10,14 @@
     console.log("[Brand Flakes] " + msg);
   }
 
+  /* ==============================
+   * Private functions
+   * ==============================
+   */
+
+  /*
+   * Initialize the server connection and call authentication
+   */
   var init = function() {
     if(!initialized) {
       
@@ -47,6 +55,10 @@
     }
   }
 
+  /*
+   * Call the server's authenticate method to ensure
+   * this app is legitimate.
+   */
   var authenticate = function() {
     if(!initialized) {
       // Authenticate the app
@@ -63,5 +75,22 @@
     }
   }
 
+
+  /* ==============================
+   * Public functions
+   * ==============================
+   */
+
+  BrandFlakes.record = function() {
+  };
+
+  BrandFlakes.get = function() {
+  };
+
+
+  /*
+   * Kick off initialization
+   */
   init();
+
 })();
