@@ -14,6 +14,8 @@ gulp.task('build-dev', function() {
   gulp.src(['./bower_components/ddp.js/src/ddp.js', './bower_components/q/q.js', './bower_components/asteroid/dist/asteroid.browser.js', 'src/*.js'])
     .pipe(concat('brand-flakes.min.js'))
     .pipe(gulp.dest('./server/app/public'));
+});
 
+gulp.task('watch', ['build-dev'], function() {
   gulp.watch('src/*.js', ['build-dev']);
 });
