@@ -7,11 +7,11 @@ describe('Apps collection', function() {
   });
   var client = browser(server);
 
-  var dummyId;
+  var sampleAppId;
 
   before(function() {
     return server.createSampleApp().then(function(res) {
-      dummyId = res.id;
+      sampleAppId = res.id;
     });
   });
 
@@ -29,27 +29,27 @@ describe('Apps collection', function() {
   });
 
   it('should not be removable from the client', function(){
-    return client.promise(function(resolve, reject, dummyId) {
-      Apps.remove({_id: dummyId}, function(err, res) {
+    return client.promise(function(resolve, reject, sampleAppId) {
+      Apps.remove({_id: sampleAppId}, function(err, res) {
         if(err) {
           reject(err);
         }
         expect.fail();
       });
-    }, [dummyId]).expectError(function (err) {
+    }, [sampleAppId]).expectError(function (err) {
       expect(err.message).to.contain('Access denied');
     });
   });
 
   it('should not be editable from the client', function(){
-    return client.promise(function(resolve, reject, dummyId) {
-      Apps.update({_id: dummyId}, {$set: {name: 'HAHAHA'}}, function(err, res) {
+    return client.promise(function(resolve, reject, sampleAppId) {
+      Apps.update({_id: sampleAppId}, {$set: {name: 'HAHAHA'}}, function(err, res) {
         if(err) {
           reject(err);
         }
         expect.fail();
       });
-    }, [dummyId]).expectError(function (err) {
+    }, [sampleAppId]).expectError(function (err) {
       expect(err.message).to.contain('Access denied');
     });
   });
@@ -74,21 +74,21 @@ describe('Apps collection', function() {
     });
 
     it('should generate a random app id before insertion', function(){
-      return server.execute(function(dummyId) {
-        var app = Apps.findOne(dummyId);
+      return server.execute(function(sampleAppId) {
+        var app = Apps.findOne(sampleAppId);
         expect(app.get('appId')).not.to.be.undefined;
         expect(app.get('appId').length).to.equal(30);
-      }, [dummyId]);
+      }, [sampleAppId]);
     });
   });
 
   describe('validation', function() {
 
     it('should return true for valid input', function(){
-      return server.execute(function(dummyId) {
-        var app = Apps.findOne(dummyId);
+      return server.execute(function(sampleAppId) {
+        var app = Apps.findOne(sampleAppId);
         expect(app.validate()).to.be.true;
-      }, [dummyId]);
+      }, [sampleAppId]);
     });
 
     it('should return false if no name is provided', function(){

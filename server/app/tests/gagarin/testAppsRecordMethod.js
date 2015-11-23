@@ -61,7 +61,7 @@ describe('apps/record method', function() {
       var sampleApp = Apps.findOne(sampleAppId);
       var appId = sampleApp.get('appId');
       var userId = 'sample-user-1';
-      var metric = 'sample-metric-2';
+      var metric = 'new-metric';
 
       Meteor.call('apps/record', appId, userId, metric);
       sampleApp.reload();
@@ -73,8 +73,8 @@ describe('apps/record method', function() {
     return server.execute(function(sampleAppId) {
       var sampleApp = Apps.findOne(sampleAppId);
       var appId = sampleApp.get('appId');
-      var userId = 'sample-user-2';
-      var metric = 'sample-metric-3';
+      var userId = 'new-user';
+      var metric = 'some-metric';
 
       Meteor.call('apps/record', appId, userId, metric);
       sampleApp.reload();
