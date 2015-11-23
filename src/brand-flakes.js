@@ -91,8 +91,8 @@
           metrics = metricsRQ.result;
         });
         if(callback) callback();
-      }).catch(function() {
-        debugMode && console.error("Subscription to user's metrics failed!");
+      }).catch(function(err) {
+        debugMode && console.error(err);
       });
   }
 
