@@ -26,4 +26,19 @@ describe('Example app', function() {
         });
       });
   });
+
+  it('should call record when clicking links', function(){
+    return client.execute(function() {
+      sinon.spy(BrandFlakes, 'record');
+    }).then(function() {
+      return client
+        .waitForDOM(".activity-link")
+        .click(".activity-link")
+        .then(function() {
+          return client.execute(function() {
+            expect(BrandFlakes.record.calledOnce).to.be.true;
+          });
+        });
+    });
+  });
 });
