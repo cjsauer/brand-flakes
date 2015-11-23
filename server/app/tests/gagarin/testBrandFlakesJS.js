@@ -28,7 +28,7 @@ describe('brand-flakes.js deliverable', function() {
     return client.execute(function() {
       BrandFlakes.record('some-metric-3');
     }).then(function() {
-      return server.wait(2000, 'for record to propogate to server', function() {
+      return server.wait(5000, 'for record to propogate to server', function() {
         var app = Apps.findOne();
         return app.metrics['some-user-1'];
       }).then(function(user) {
