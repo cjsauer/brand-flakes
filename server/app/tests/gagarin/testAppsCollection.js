@@ -1,18 +1,17 @@
+var fixtures = require('../helpers/fixtures.js');
+
 describe('Apps collection', function() {
 
-  var server = meteor();
+  var server = meteor({
+    helpers: fixtures
+  });
   var client = browser(server);
 
   var dummyId;
 
   before(function() {
-    return server.execute(function() {
-      var dummyApp = new App({
-        name: 'Dummy'
-      });
-      return dummyApp.save();
-    }).then(function(id) {
-      dummyId = id;
+    return server.createSampleApp().then(function(res) {
+      dummyId = res.id;
     });
   });
 

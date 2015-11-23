@@ -1,16 +1,15 @@
+var fixtures = require('../helpers/fixtures.js');
+
 describe('apps/authenticate', function() {
-  var server = meteor();
+  var server = meteor({
+    helpers: fixtures
+  });
 
   var sampleAppAppId;
 
   before(function() {
-    return server.execute(function() {
-      var app = new App({name: 'Sample App'});
-      app.save();
-      app.reload();
-      return app.get('appId');
-    }).then(function(appId) {
-      sampleAppAppId = appId;
+    return server.createSampleApp().then(function(res) {
+      sampleAppAppId = res.appId;
     });
   });
 
