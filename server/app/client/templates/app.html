@@ -16,7 +16,13 @@
     s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
     (window,document,'BrandFlakes','script','//' + window.location.host + '/brand-flakes.min.js');
 
-    BrandFlakes(getURLParameter('appId') || 'c3G9N6PXoJwnbXhsLHdoapbYw7j3bd', getURLParameter('userId'), 'debug');
+    BrandFlakes(
+      getURLParameter('appId') || 'c3G9N6PXoJwnbXhsLHdoapbYw7j3bd',
+      getURLParameter('userId'),
+      function() {
+        console.log("READY");
+      }, 'debug'
+    );
   </script>
 </head>
 

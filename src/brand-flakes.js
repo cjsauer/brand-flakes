@@ -6,6 +6,7 @@
   var debugMode;
   var server;
   var metrics;
+  var callback;
 
   var log = function(msg) {
     console.log("[Brand Flakes] " + msg);
@@ -26,7 +27,8 @@
       var qCommands = BrandFlakes.q.pop();
       appId = qCommands[0];
       userId = qCommands[1];
-      debugMode = !!qCommands[2];
+      callback = qCommands[2];
+      debugMode = !!qCommands[3];
 
       var host;
       if(debugMode) {
@@ -88,6 +90,7 @@
         metricsRQ.on('change', function() {
           metrics = metricsRQ.result;
         });
+        if(callback) callback();
       }).catch(function() {
         debugMode && console.error("Subscription to user's metrics failed!");
       });
