@@ -26,13 +26,13 @@ Brand Flakes is now configured and ready to use on your site! See below for some
 ```javascript
 <script>
 // The user clicked the shopping cart
-BrandFlakes('record', 'shopping-cart-clicked');
+BrandFlakes.record('shopping-cart-clicked');
 
 // The user visited a page containing "North Face" in the URL
-BrandFlakes('record', 'north-face');
+BrandFlakes.record('north-face');
 
 // Metrics can be recorded for ANYTHING at any time
-BrandFlakes('record', 'literally-any-metric-we-want-to-track');
+BrandFlakes.record('literally-any-metric-we-want-to-track');
 </script>
 ```
 
@@ -43,7 +43,7 @@ What `'record'` does is just increment the number of times that this action has 
 ```javascript
 <script>
 // Retrieve the number of times the user has visited North Face pages
-var northFaceInterest = BrandFlakes('get', 'north-face');
+var northFaceInterest = BrandFlakes.get('north-face');
 
 /*
  * Do something clever with that metric, like set the font size of their favorite products
