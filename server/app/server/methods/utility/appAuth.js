@@ -11,7 +11,7 @@ Meteor.methods({
     check(appId, String);
     
     // Find the app
-    let app = Apps.findOne(appId);
+    let app = Apps.findOne({appId});
     if(app) {
       return true;
     } else {

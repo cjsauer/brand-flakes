@@ -12,9 +12,9 @@ To use Brand Flakes, we just need to insert this snippet into our application ju
 !function(b,f,l,a,k,e,s){b.BrandFlakesObject=l;b[l]||(b[l]=function(){
 (b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=f.createElement(a);
 s=f.getElementsByTagName(a)[0];e.src=k;s.parentNode.insertBefore(e,s)}
-(window,document,'BrandFlakes','script','//localhost:3000/public/brand-flakes.js');
+(window,document,'BrandFlakes','script','//localhost:3000/public/brand-flakes.min.js');
 
-BrandFlakes('create', 'some-app-id', 'some-user-id', 'auto');
+BrandFlakes('some-app-id', 'some-user-id');
 ```
 
 Replace `some-app-id` with the application ID given to you when you set up your account, and replace `some-user-id` with a unique identifier for the user currently viewing your website. This will be unique to how you've implemented authentication on your site, but is usually the ID of the user as it stands in your database (primary key, \_id file in Mongo, etc.)
@@ -55,3 +55,25 @@ var northFaceInterest = BrandFlakes('get', 'north-face');
 # Syncing between devices
 
 User actions are sent *in real time* to a separate server using the DDP protocol (Meteor) using any kind of user id as the key. This way, actions taken on the desktop version of the website will be reflected when the same user visits the site on mobile, or any other device. Following actions taken on the mobile version of the site are then tracked in the same way, given that the user is logged in or identified in some way.
+
+# Contributors
+
+To get up and running, you'll need a few dependencies installed:
+
+```bash
+bower update
+npm install -g
+```
+
+You can run the server by changing to the `server/` directory and running the `./start` script. Be sure to have [meteor installed](https://www.meteor.com/install).
+
+### Tests
+
+You can run the tests by changing to the server's `app/` directory and running `gagarin`. This will run all tests, including server-side tests, client-side tests (example app, app creation), and the brand-flakes.js script itself. 
+
+
+### Building
+
+To build the main `brand-flakes.js` script and its dependencies into one minified file, run `gulp build`. This task outputs the minified file into `server/app/public/brand-flakes.min.js`. You may also choose to run `gulp build-dev` which does not minify or uglify the source. Lastly, try `gulp watch` which begins watching for any file changes in the `src/` directory and will call `gulp build-dev` for you automatically. 
+
+From their it will be served for public consumption. The delivery method is identical to how Google Analytics serves its tracking script. See [this post here](http://code.stephenmorley.org/javascript/understanding-the-google-analytics-tracking-code/) to understand how it works. 

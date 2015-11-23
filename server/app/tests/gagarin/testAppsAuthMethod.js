@@ -6,7 +6,9 @@ describe('apps/authenticate', function() {
   before(function() {
     return server.execute(function() {
       var app = new App({name: 'Sample App'});
-      return app.save();
+      app.save();
+      app.reload();
+      return app.get('appId');
     }).then(function(appId) {
       sampleAppAppId = appId;
     });

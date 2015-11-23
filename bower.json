@@ -1,0 +1,27 @@
+{
+  "name": "brand-flakes",
+  "homepage": "https://github.com/cjsauer/brand-flakes",
+  "authors": [
+    "Calvin Sauer <calvin.j.sauer@gmail.com>"
+  ],
+  "description": "App personalization helper written on top of Meteor server",
+  "main": "src/brand-flakes.js",
+  "moduleType": [],
+  "keywords": [
+    "personalization",
+    "branding",
+    "meteor"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "asteroid": "~0.6.1"
+  }
+}
