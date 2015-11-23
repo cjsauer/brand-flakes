@@ -1,21 +1,15 @@
+var fixtures = require('../helpers/fixtures.js');
+
 describe('apps/record method', function() {
-  var server = meteor();
+  var server = meteor({
+    helpers: fixtures
+  });
 
   var sampleAppId;
 
   before(function() {
-    return server.execute(function() {
-      var app = new App({
-        name: 'Sample App',
-        metrics: {
-          'sample-user-1': {
-            'sample-metric-1': 42
-          }
-        }
-      });
-      return app.save();
-    }).then(function(id) {
-      sampleAppId = id;
+    return server.createSampleApp().then(function(res) {
+      sampleAppId = res.id;
     });
   });
 
@@ -53,8 +47,8 @@ describe('apps/record method', function() {
     return server.execute(function(sampleAppId) {
       var sampleApp = Apps.findOne(sampleAppId);
       var appId = sampleApp.get('appId');
-      var userId = 'sample-user-1';
-      var metric = 'sample-metric-1';
+      var userId = 'some-user-1';
+      var metric = 'some-metric-1';
 
       Meteor.call('apps/record', appId, userId, metric);
       sampleApp.reload();
@@ -67,7 +61,7 @@ describe('apps/record method', function() {
       var sampleApp = Apps.findOne(sampleAppId);
       var appId = sampleApp.get('appId');
       var userId = 'sample-user-1';
-      var metric = 'sample-metric-2';
+      var metric = 'new-metric';
 
       Meteor.call('apps/record', appId, userId, metric);
       sampleApp.reload();
@@ -79,8 +73,8 @@ describe('apps/record method', function() {
     return server.execute(function(sampleAppId) {
       var sampleApp = Apps.findOne(sampleAppId);
       var appId = sampleApp.get('appId');
-      var userId = 'sample-user-2';
-      var metric = 'sample-metric-3';
+      var userId = 'new-user';
+      var metric = 'some-metric';
 
       Meteor.call('apps/record', appId, userId, metric);
       sampleApp.reload();
