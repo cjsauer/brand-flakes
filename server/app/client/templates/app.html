@@ -67,90 +67,15 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="word-cloud">
-          <a class="activity-link" href="#">Amateur radio</a>
-          <a class="activity-link" href="#">Acting</a>
-          <a class="activity-link" href="#">Baton twirling</a>
-          <a class="activity-link" href="#">Board games</a>
-          <a class="activity-link" href="#">Book restoration</a>
-          <a class="activity-link" href="#">Cabaret</a>
-          <a class="activity-link" href="#">Calligraphy</a>
-          <a class="activity-link" href="#">Candle making</a>
-          <a class="activity-link" href="#">Computer programming</a>
-          <a class="activity-link" href="#">Coffee roasting</a>
-          <a class="activity-link" href="#">Cooking</a>
-          <a class="activity-link" href="#">Coloring</a>
-          <a class="activity-link" href="#">Cosplaying</a>
-          <a class="activity-link" href="#">Couponing</a>
-          <a class="activity-link" href="#">Creative writing</a>
-          <a class="activity-link" href="#">Crocheting</a>
-          <a class="activity-link" href="#">Cryptography</a>
-          <a class="activity-link" href="#">Dance</a>
-          <a class="activity-link" href="#">Digital arts</a>
-          <a class="activity-link" href="#">Drama</a>
-          <a class="activity-link" href="#">Drawing</a>
-          <a class="activity-link" href="#">Do it yourself</a>
-          <a class="activity-link" href="#">Electronics</a>
-          <a class="activity-link" href="#">Embroidery</a>
-          <a class="activity-link" href="#">Fashion</a>
-          <a class="activity-link" href="#">Flower arranging</a>
-          <a class="activity-link" href="#">Foreign language learning</a>
-          <a class="activity-link" href="#">Gaming (tabletop games and role-playing games)</a>
-          <a class="activity-link" href="#">Gambling</a>
-          <a class="activity-link" href="#">Genealogy</a>
-          <a class="activity-link" href="#">Glassblowing</a>
-          <a class="activity-link" href="#">Gunsmithing</a>
-          <a class="activity-link" href="#">Homebrewing</a>
-          <a class="activity-link" href="#">Ice skating</a>
-          <a class="activity-link" href="#">Jewelry making</a>
-          <a class="activity-link" href="#">Jigsaw puzzles</a>
-          <a class="activity-link" href="#">Juggling</a>
-          <a class="activity-link" href="#">Knapping</a>
-          <a class="activity-link" href="#">Knitting</a>
-          <a class="activity-link" href="#">Kabaddi</a>
-          <a class="activity-link" href="#">Knife making</a>
-          <a class="activity-link" href="#">Lacemaking</a>
-          <a class="activity-link" href="#">Lapidary</a>
-          <a class="activity-link" href="#">Leather crafting</a>
-          <a class="activity-link" href="#">Lego building</a>
-          <a class="activity-link" href="#">Lockpicking</a>
-          <a class="activity-link" href="#">Machining</a>
-          <a class="activity-link" href="#">Macrame</a>
-          <a class="activity-link" href="#">Metalworking</a>
-          <a class="activity-link" href="#">Magic</a>
-          <a class="activity-link" href="#">Model building</a>
-          <a class="activity-link" href="#">Listening to music</a>
-          <a class="activity-link" href="#">Origami</a>
-          <a class="activity-link" href="#">Painting</a>
-          <a class="activity-link" href="#">Playing musical instruments</a>
-          <a class="activity-link" href="#">Pet</a>
-          <a class="activity-link" href="#">Poi</a>
-          <a class="activity-link" href="#">Pottery</a>
-          <a class="activity-link" href="#">Puzzles</a>
-          <a class="activity-link" href="#">Quilting</a>
-          <a class="activity-link" href="#">Reading</a>
-          <a class="activity-link" href="#">Scrapbooking</a>
-          <a class="activity-link" href="#">Sculpting</a>
-          <a class="activity-link" href="#">Sewing</a>
-          <a class="activity-link" href="#">Singing</a>
-          <a class="activity-link" href="#">Sketching</a>
-          <a class="activity-link" href="#">Soapmaking</a>
-          <a class="activity-link" href="#">Sports</a>
-          <a class="activity-link" href="#">Stand-up comedy</a>
-          <a class="activity-link" href="#">Sudoku</a>
-          <a class="activity-link" href="#">Table tennis</a>
-          <a class="activity-link" href="#">Taxidermy</a>
-          <a class="activity-link" href="#">Video gaming</a>
-          <a class="activity-link" href="#">Watching movies</a>
-          <a class="activity-link" href="#">Web surfing</a>
-          <a class="activity-link" href="#">Whittling</a>
-          <a class="activity-link" href="#">Wood carving</a>
-          <a class="activity-link" href="#">Woodworking</a>
-          <a class="activity-link" href="#">Worldbuilding</a>
-          <a class="activity-link" href="#">Writing</a>
-          <a class="activity-link" href="#">Yoga</a>
-          <a class="activity-link" href="#">Yo-yoing</a>
+          {{#each activities}}
+            {{> activityLink}}
+          {{/each}}
         </div>
       </div>
     </div>
   </div>
+</template>
+
+<template name="activityLink">
+  <a class="activity-link" href="#">{{this}}</a>
 </template>
