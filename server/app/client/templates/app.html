@@ -20,7 +20,11 @@
       getURLParameter('appId') || 'c3G9N6PXoJwnbXhsLHdoapbYw7j3bd',
       getURLParameter('userId'),
       function() {
-        console.log("READY");
+        $('.activity-link').map(function() {
+          var self = $(this);
+          var fontSize = parseInt(BrandFlakes.get(this.innerText)) + 15;
+          self.css('font-size', fontSize + "px");
+        });
       }, 'debug'
     );
   </script>
